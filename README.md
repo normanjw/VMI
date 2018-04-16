@@ -1,6 +1,13 @@
 # raspberry_pi
 
 
+    To test locally, run from terminal in this order
+        python3 server_app.py
+        python3 sensor_simulator.py
+        python3 gui_inventory.py
+        
+        note: due to relative paths, can't run from IDE
+
     SSHing into pi
 
     ssh pi@ip_address

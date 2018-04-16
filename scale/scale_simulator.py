@@ -8,7 +8,7 @@ import time
 def set_database_path():
     database_path = ""
     if os.getcwd() == '/':
-        database_path = '/home/pi/Desktop/raspberry_pi/scale/drawer_database.json'
+        database_path = '/home/pi/Desktop/VMI/scale/drawer_database.json'
     else:
         database_path = 'drawer_database.json'
     return database_path
