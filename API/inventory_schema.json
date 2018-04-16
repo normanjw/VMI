@@ -1,0 +1,17 @@
+{
+	"$schema": "http://json_schema.org/schema#",
+	"title": "Airline Hydraulics Drawer Inventory",
+	"description": "This JSON describes the JSON to store inventory item information per drawer",
+	"type": "object",
+	"properties": {
+		"item_ID": {"type": "string"},
+		"pattern": "^[a-z]\\d\\d\\d$",
+		"quantity": {"type": "integer"},
+		"minimum": 0,
+		"customer_ID": {"type": "string"},
+		"pattern": "^[a-z]\\d\\d\\d$",
+		"date_time": {"type": "string", "format": "date-time"}
+	},
+	"additionalProperties": false,
+	"required": ["item_ID", "quantity", "customer_ID", "date_time"]
+}
