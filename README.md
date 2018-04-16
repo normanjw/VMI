@@ -1,5 +1,6 @@
 # raspberry_pi
 
+    hx711 package is from: https://github.com/tatobari/hx711py.git
 
     To test locally, run from terminal in this order
         python3 server_app.py
