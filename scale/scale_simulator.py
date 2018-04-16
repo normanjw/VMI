@@ -86,5 +86,5 @@ def run():
 
 while True:
     run()
-    time.sleep(5)
+#    time.sleep(5)
 
