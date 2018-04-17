@@ -5,9 +5,11 @@ import os
 import time
 
 
-scale_dir_env_path = ''
+scale_dir_env_path = ""
 if os.getcwd() == '/':
     scale_dir_env_path = '/home/pi/Desktop/VMI/scale/'
+else:
+    scale_dir_env_path = ''
 
 
 def get_drawer_database():
