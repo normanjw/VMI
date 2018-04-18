@@ -84,4 +84,5 @@ if __name__ == "__main__":
         try:
             drawer_status = refresh_drawer_status()
             write_to_file(drawer_status)
-        except(Ke)
+        except(KeyboardInterrupt, SystemExit):
+            hx.clean_and_exit()
