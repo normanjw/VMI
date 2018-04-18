@@ -14,7 +14,7 @@ class GetJson(Resource):
         if os.getcwd() == '/':
             relative_path = '/home/pi/Desktop/raspberry_pi/scale/drawer_status.json'
         else:
-            relative_path = os.getcwd() + '/scale/drawer_status.json'
+            relative_path = '/Users/jaz/Desktop/VMI/scale/drawer_status.json'
         return relative_path
 
     def get(self):
