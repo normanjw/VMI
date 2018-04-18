@@ -8,7 +8,7 @@ import time
 def get_host():
     host = ""
     if os.getcwd() == '/':
-        host = '192.168.0.13'
+        host = '192.168.43.87'
     else:
         host = 'localhost'
     return host
@@ -70,6 +70,7 @@ def get_time(drawer_data):
 
 if __name__ == '__main__':
     inventory_data = get_drawer_data()
+    print(inventory_data)
     status_window = App(title='Inventory Status', height=200, width=300, layout='grid')
     Text(status_window, 'Date:', size="24", grid=[0, 0])
     Text(status_window, get_date(inventory_data), size="24", grid=[1, 0])
