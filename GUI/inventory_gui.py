@@ -1,16 +1,11 @@
 from guizero import *
 import requests
 import json
-import os
 import time
 
 
 def get_host():
-    host = ""
-    if os.getcwd() == '/':
-        host = '192.168.0.13'
-    else:
-        host = 'localhost'
+    host = '192.168.0.13'
     return host
 
 

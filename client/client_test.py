@@ -3,7 +3,7 @@ import requests
 
 def client_test():
     """
-    tests server/client connection
+    tests server/client connection through localhost
     :return: http response code
     """
     url = 'http://localhost:3003/api/v1/VMI/get_sensor_data'
