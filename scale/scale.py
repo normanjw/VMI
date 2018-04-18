@@ -73,12 +73,8 @@ def get_weight():
     :return:
     weight in kg
     """
-    weight = 0
-    try:
-        weight = hx.read_weight_kg()
-        hx.cycle()
-    except (KeyboardInterrupt, SystemExit):
-        hx.clean_and_exit()
+    weight = hx.read_weight_kg()
+    hx.cycle()
     return weight
 
 
