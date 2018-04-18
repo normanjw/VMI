@@ -6,11 +6,7 @@ import time
 
 
 def get_host():
-    host = ""
-    if os.getcwd() == '/':
-        host = '192.168.43.87'
-    else:
-        host = 'localhost'
+    host = '192.168.43.87'
     return host
 
 
