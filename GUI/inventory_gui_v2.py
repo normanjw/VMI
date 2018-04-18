@@ -1,25 +1,6 @@
-import smtplib
-import base64
 from tkinter import *
-from tkinter import scrolledtext
 import tkinter.messagebox
 
-#mail = smtplib.SMTP('smtp.gmail.com',587)
-#mail.ehlo()
-#mail.starttls()
-#mail.login('ece404vmi@gmail.com','vmiece404')
-#mail.sendmail('ece404vmi@gmail.com','shind2@vcu.edu', 'Threshold reached. Ordering inventory.')
-#mail.close()
-
-#class
-
-#class
-
-
-# functions
-def doSomething(self, master):
-      print("Add functionality here..")
-#creating window object
 
 window = Tk()
 w = Label(window, text="ECE 404: VMI")
@@ -30,9 +11,7 @@ message = tkinter.messagebox.askquestion('Message','Show status of VMI system?')
 if message == 'yes':
     print('Here are the current statuses.')
 
-#txt = scrolledtext.ScrolledText(window, width=40, height=10)
-#txt.grid(row=0,column=20)
-#exit button
+
 exitButton = Button(window, text="Click to Exit",command=window.destroy)
 exitButton.grid(row=20,column=25)
 #Menu
@@ -92,8 +71,7 @@ binthree4 = Label(window, text="Availability", font=("Arial Bold", 8))
 binthree4.grid(row=8, column=7, sticky=W)
 binthree5 = Label(window, text="Reorder?", font=("Arial", 8))
 binthree5.grid(row=8, column=17, sticky=E)
-#lbl6 = Label(window, text="Mark if Yes", font=("Arial", 6, "italic"))
-#lbl6.grid(column=20, row=1)
+
 window.geometry('1000x425')
 #define entries
    #bin 1
@@ -149,25 +127,5 @@ list1.insert(1,'SMS')
 list1.insert(2,'E-Mail')
 list1.insert(3,'Both')
 list1.grid(row=12, column=19)
-
-#class newWindow:
-#
- #   def __init__(self, master):
-  #      frame = Frame(master)
-   #     frame.pack()
-#
-#        self.printButton = Button(frame, text = "test message", command=self.printMessage)
- #       self.printButton.pack(side=LEFT)
-#
- #       self.quitButton = Button(frame, text="Quit",command=frame.quit)
-  #      self.quitButton.pack(side=LEFT)
-
-   # def printMessage(self):
-   #     print("Test, is it working?")
-#
-#def clicked():
-#    lbl.configure(text="Button has been clicked")
-#btn = Button(window, text="Test Button", command=clicked)
-#btn.grid(row=1, column=0)
 
 window.mainloop()
