@@ -2,14 +2,13 @@ import random
 import datetime
 import json
 import os
-import time
+from scale.hx711 import HX711
 
 
-scale_dir_env_path = ""
+global scale_dir_env_path
+scale_dir_env_path = ''
 if os.getcwd() == '/':
     scale_dir_env_path = '/home/pi/Desktop/VMI/scale/'
-else:
-    scale_dir_env_path = ''
 
 
 def get_drawer_database():
@@ -31,7 +30,12 @@ def get_weight():
     :return:
     weight in kg
     """
-    return random.uniform(0, 2)
+    try:
+        weight = hx.read_weight_kg()
+        hx.cycle()
+    except (KeyboardInterrupt, SystemExit):
+        hx.clean_and_exit()
+    return weight
 
 
 def get_num_items(drawer_database):
@@ -70,13 +74,24 @@ def refresh_drawer_status():
 
 
 def write_to_file(drawer_status):
+    """
+    writes to file current inventory statuses
+    :param drawer_status: json with inventory stats for one drawer
+    :return: None
+    """
     with open(scale_dir_env_path + 'drawer_status.json', 'w') as outfile:
         json.dump(drawer_status, outfile)
         print(drawer_status)
 
 
 if __name__ == "__main__":
+    hx = HX711(5, 6)
+    hx.set_offset(8441810.431)
+    hx.set_scale(12.02637183)
+
     while True:
-        drawer_status = refresh_drawer_status()
-        write_to_file(drawer_status)
-        time.sleep(5)
+        try:
+            drawer_status = refresh_drawer_status()
+            write_to_file(drawer_status)
+        except (KeyboardInterrupt, SystemExit):
+            hx.clean_and_exit()
