@@ -22,7 +22,6 @@ def get_drawer_data():
     print("Status Code:" + str(response.status_code))
     print(f'Content from ' + host + ':3003: {response.content}')
     drawer_data = json.loads(response.content)
-    print(drawer_data)
     return drawer_data
 
 
