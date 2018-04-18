@@ -1,7 +1,7 @@
 import datetime
 import json
 import os
-from scale.hx711 import HX711
+from hx711 import HX711
 
 
 scale_dir_env_path = ''
