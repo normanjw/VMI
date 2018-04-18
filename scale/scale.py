@@ -84,5 +84,8 @@ if __name__ == "__main__":
     hx.set_scale(12.02637183)
 
     while True:
-        drawer_status = refresh_drawer_status()
-        write_to_file(drawer_status)
+        try:
+            drawer_status = refresh_drawer_status()
+            write_to_file(drawer_status)
+        except(KeyboardInterrupt, SystemExit):
+            hx.clean_and_exit()
