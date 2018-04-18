@@ -1,12 +1,9 @@
 import datetime
 import json
-import os
 from hx711 import HX711
 
 
-scale_dir_env_path = ''
-if os.getcwd() == '/':
-    scale_dir_env_path = '/home/pi/Desktop/VMI/scale/'
+scale_dir_env_path = '/home/pi/Desktop/VMI/scale/'
 
 
 def get_drawer_database():
@@ -87,5 +84,4 @@ if __name__ == "__main__":
         try:
             drawer_status = refresh_drawer_status()
             write_to_file(drawer_status)
-        except(KeyboardInterrupt, SystemExit):
-            hx.clean_and_exit()
+        except(Ke)
