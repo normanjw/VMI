@@ -74,8 +74,12 @@ def get_weight():
     :return:
     weight in kg
     """
-    weight = hx.read_weight_kg()
-    hx.cycle()
+    weight = 0
+    try:
+        weight = hx.read_weight_kg()
+        hx.cycle()
+    except (KeyboardInterrupt, SystemExit):
+        hx.clean_and_exit()
     return weight
 
 
@@ -85,8 +89,5 @@ if __name__ == "__main__":
     hx.set_scale(12.02637183)
 
     while True:
-        try:
-            drawer_status = refresh_drawer_status()
-            write_to_file(drawer_status)
-        except (KeyboardInterrupt, SystemExit):
-            hx.clean_and_exit()
+        drawer_status = refresh_drawer_status()
+        write_to_file(drawer_status)
