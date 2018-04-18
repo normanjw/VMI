@@ -44,7 +44,6 @@ def get_datetime():
 
 def refresh_drawer_status():
     """
-
     :return: dynamic drawer status
     """
     drawer_database = get_drawer_database()
@@ -74,12 +73,8 @@ def get_weight():
     :return:
     weight in kg
     """
-    weight = 0
-    try:
-        weight = hx.read_weight_kg()
-        hx.cycle()
-    except (KeyboardInterrupt, SystemExit):
-        hx.clean_and_exit()
+    weight = hx.read_weight_kg()
+    hx.cycle()
     return weight
 
 
@@ -89,5 +84,8 @@ if __name__ == "__main__":
     hx.set_scale(12.02637183)
 
     while True:
-        drawer_status = refresh_drawer_status()
-        write_to_file(drawer_status)
+        try:
+            drawer_status = refresh_drawer_status()
+            write_to_file(drawer_status)
+        except (KeyboardInterrupt, SystemExit):
+            hx.clean_and_exit()
