@@ -3,22 +3,21 @@ import logging
 import time
 import requests
 from guizero import *
+import env_vars
 
 
 class InventoryStatus:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.item_quantity = None
-        self.host = '192.168.43.87'
-        self.port_num = 3003
 
     def get_drawer_data(self):
         """
         makes get request for drawer status
         :return: json of drawer data
         """
-        host = str(self.host)
-        port_num = str(self.port_num)
+        host = str(env_vars.host)
+        port_num = str(env_vars.port_num)
         url = 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data'
         print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
         response = requests.get(url)
