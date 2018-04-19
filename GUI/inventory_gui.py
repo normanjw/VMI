@@ -11,8 +11,7 @@ class InventoryStatus:
         self.item_quantity = None
 
     def get_host(self):
-        #host = '192.168.43.87'
-        host = 'localhost'
+        host = '192.168.43.87'
         return host
 
     def get_drawer_data(self):
