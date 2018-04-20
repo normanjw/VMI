@@ -115,6 +115,9 @@ class HX711:
         """
         self.OFFSET = offset
 
+    def get_offset(self):
+        return self.OFFSET
+
     def set_scale(self, scale):
         """
         Set scale

@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 from hx711 import HX711
+import numpy
 #import sys
 #sys.path.append('/home/pi/Desktop/VMI/scale/')
 #from Settings import env_vars
@@ -11,6 +12,7 @@ class Scale:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.scale_dirpath = '/home/pi/Desktop/VMI/scale/'
+        self.hx = HX711(5, 6)
 
     def get_drawer_database(self):
         """
@@ -71,20 +73,41 @@ class Scale:
         :return:
         weight in kg
         """
-        weight = hx.read_weight_kg()
-        hx.cycle()
+        weight = self.hx.read_weight_kg()
+        self.hx.cycle()
         return weight
+
+    def calculate_offset(self):
+        print("remove any weight from scale. hit enter when done.")
+        input()
+        offsets_measured = []
+        for i in range(10):
+            offsets_measured.append(self.hx.get_weight())
+        o = numpy.mean(offsets_measured)
+        self.hx.set_offset(o)
+
+    def calculate_ratio(self, hx):
+        print("place then enter weight in grams: ")
+        weight_actual = input()
+        weights_measured = []
+        for i in range(10):
+            weights_measured.append(hx.get_weight())
+        w = numpy.mean(weights_measured)
+        ratio = (w - self.hx.get_offset()) / weight_actual
+        self.hx.set_scale(ratio)
+
+    def calibrate(self):
+        self.calculate_offset()
+        self.calculate_ratio()
 
 
 if __name__ == "__main__":
     scale = Scale()
-    hx = HX711(5, 6)
-    hx.set_offset(8441810.431)
-    hx.set_scale(12.02637183)
+    scale.calibrate()
 
     while True:
         try:
             drawer_status = scale.refresh_drawer_status()
             scale.write_to_file(drawer_status)
         except(KeyboardInterrupt, SystemExit):
-            hx.clean_and_exit()
+            scale.hx.clean_and_exit()
