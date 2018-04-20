@@ -28,6 +28,8 @@ def get_num_items(drawer_database):
     weight = get_weight()
     kg_per_item = float(drawer_database['kg_per_item'])
     num_items = math.ceil(weight/kg_per_item)
+    print(weight)
+    print(num_items)
     return num_items
 
 
