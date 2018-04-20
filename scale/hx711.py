@@ -66,6 +66,7 @@ class HX711:
         GPIO.output(self.PD_SCK, True)
         count = count ^ 0x800000
         GPIO.output(self.PD_SCK, False)
+
         return count
 
     def read_average(self, times=16):
@@ -76,9 +77,7 @@ class HX711:
         sum = 0
         for i in range(times):
             sum += self.read()
-        avg = sum / times
-        print('avg: ' + str(avg) + ' off: ' + str(self.OFFSET) + ' ratio: ' + str(self.SCALE))
-        return avg
+        return sum / times
 
     def power_down(self):
         GPIO.output(self.PD_SCK, False)
@@ -95,7 +94,6 @@ class HX711:
         grams_per_kg = 1000
         weight_kg = 0
         weight_grams = (self.read_average() - self.OFFSET) / self.SCALE
-        print('weight in grams: ' + str(weight_grams))  # debug
         if weight_grams > 0:
             weight_kg = weight_grams / grams_per_kg
         return round(weight_kg, 3)
@@ -116,9 +114,6 @@ class HX711:
         :param offset: offset
         """
         self.OFFSET = offset
-
-    def get_offset(self):
-        return self.OFFSET
 
     def set_scale(self, scale):
         """
