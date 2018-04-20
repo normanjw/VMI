@@ -2,8 +2,12 @@ import random
 import datetime
 import json
 import time
-from Settings import env_vars
 import logging
+import sys
+import os
+if os.getcwd() == '/':
+    sys.path.append('/home/pi/Desktop/VMI/')
+from Settings import env_vars
 
 
 class ScaleSimulator:
