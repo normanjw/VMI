@@ -1,8 +1,7 @@
 import datetime
 import json
-
 from hx711 import HX711
-
+sys.path.append('/home/pi/Desktop/VMI/Settings/')
 from Settings import env_vars
 
 
