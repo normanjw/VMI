@@ -1,6 +1,7 @@
 import datetime
 import json
 from hx711 import HX711
+import math
 #from Configs import env_vars
 scale_dir_env_path = '/home/pi/Desktop/VMI/scale/'
 
@@ -26,7 +27,8 @@ def get_num_items(drawer_database):
     """
     weight = get_weight()
     kg_per_item = float(drawer_database['kg_per_item'])
-    return int(weight / kg_per_item)
+    num_items = math.ceil(weight/kg_per_item)
+    return num_items
 
 
 def get_datetime():
