@@ -66,7 +66,6 @@ class HX711:
         GPIO.output(self.PD_SCK, True)
         count = count ^ 0x800000
         GPIO.output(self.PD_SCK, False)
-        print(count)    # debug
         return count
 
     def read_average(self, times=16):
@@ -77,7 +76,9 @@ class HX711:
         sum = 0
         for i in range(times):
             sum += self.read()
-        return sum / times
+        avg = sum / times
+        print('avg: ' + str(avg) + ' off: ' + str(self.OFFSET) + ' ratio: ' + str(self.SCALE))
+        return avg
 
     def power_down(self):
         GPIO.output(self.PD_SCK, False)
