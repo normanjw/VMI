@@ -1,8 +1,8 @@
 import datetime
 import json
 from hx711 import HX711
-from Configs import env_vars
-#scale_dir_env_path = '/home/pi/Desktop/VMI/scale/'
+#from Configs import env_vars
+scale_dir_env_path = '/home/pi/Desktop/VMI/scale/'
 
 
 def get_drawer_database():
@@ -58,7 +58,7 @@ def write_to_file(drawer_status):
     :param drawer_status: json with inventory stats for one drawer
     :return: None
     """
-    with open(env_vars.scale_dir_env_path + 'drawer_status.json', 'w') as outfile:
+    with open(scale_dir_env_path + 'drawer_status.json', 'w') as outfile:
         json.dump(drawer_status, outfile)
         print(drawer_status)
 
