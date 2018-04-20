@@ -70,7 +70,6 @@ def get_weight():
     weight in kg
     """
     weight = hx.read_weight_kg()
-    print(weight)
     hx.cycle()
     return weight
 
