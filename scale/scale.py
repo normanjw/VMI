@@ -2,7 +2,7 @@ import datetime
 import json
 import logging
 from hx711 import HX711
-#import sys
+import sys
 #sys.path.append('/home/pi/Desktop/VMI/scale/')
 #from Settings import env_vars
 
@@ -33,6 +33,7 @@ class Scale:
         """
         weight = self.get_weight()
         kg_per_item = float(drawer_database['kg_per_item'])
+        print('weight: ' + str(weight)) # debug
         return int(weight / kg_per_item)
 
     def get_datetime(self):
@@ -98,6 +99,7 @@ class Scale:
         w = sum(weights_measured) / float(len(weights_measured))
         ratio = (float(w) - float(self.hx.get_offset())) / float(weight_actual)
         self.hx.set_scale(ratio)
+        print('ratio is: ' + str(ratio))
 
     def calibrate(self):
         self.calculate_offset()
@@ -106,7 +108,9 @@ class Scale:
 
 if __name__ == "__main__":
     scale = Scale()
-    scale.calibrate()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'c':
+            scale.calibrate()
 
     while True:
         try:
