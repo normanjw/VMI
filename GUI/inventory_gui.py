@@ -1,17 +1,21 @@
-import json
+from tkinter import *
 import logging
-import time
+import random
+import json
 import requests
-from guizero import *
 from Configs import env_vars
 
 
 class InventoryStatus:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
-        self.item_quantity = None
+        self.inventory_window = Tk()
+        self.num_rows = 0
+        self.num_cols = 3
+        self.keys = ['drawer_num', 'item_type', 'quantity']
+        self.num_drawers = self.get_num_drawers()
 
-    def get_drawer_data(self):
+    def get_data(self):
         """
         makes get request for drawer status
         :return: json of drawer data
@@ -26,70 +30,48 @@ class InventoryStatus:
         drawer_data = json.loads(response.content)
         return drawer_data
 
+    def get_num_drawers(self):
+        database = self.get_data()
+        return len(database['drawers'])
+
     def get_num_items(self):
-        drawer_data = self.get_drawer_data()
-        return drawer_data['quantity']
+        return random.randint(0, 10)
 
-    def update_quantity(self):
-        """
-        updates item quantity value in GUI
-        :return: None
-        """
-        num_items = self.get_num_items()
-        if int(num_items) != 0:
-            self.item_quantity.value = num_items
-        else:
-            self.item_quantity.value = num_items
-            response = yesno("Confirmation", "Is drawer 1 empty?")
-            if response:
-                info("Confirmation", "Response logged: Drawer 1 Empty")
-            else:
-                info("Confirmation", "Response logged: Drawer 1 NOT Empty")
-        self.item_quantity.after(3000, self.update_quantity)
+    def run_display(self):
+        self.define_window()
+        self.create_labels()
+        self.set_values()
+        self.inventory_window.mainloop()
 
-    def get_item_type(self, drawer_data):
-        return drawer_data['item_type']
+    def define_window(self):
+        self.inventory_window.configure(background="#222222")
+        self.inventory_window.geometry('600x400')
+        self.inventory_window.title("Inventory Status")
 
-    def get_drawer_num(self, drawer_data):
-        return drawer_data['drawer_number']
+    def create_labels(self):
+        self.num_rows += 1
+        num_cols = 3
+        row_num = 0
+        titles = ['Drawer', 'Item', 'Quantity']
+        for col_num in range(num_cols):
+            lbl = Label(self.inventory_window, text=titles[col_num], fg="#0E80D5", font=("Helvetica", 24), width=10, anchor="w")
+            lbl.grid(row=row_num, column=col_num)
+            lbl.configure(background="#222222")
 
-    def get_date(self, drawer_data):
-        """
-        parse the date
-        """
-        date_time = drawer_data['date_time']
-        date = date_time.split('T')[0]
-        return date
-
-    def get_time(self, drawer_data):
-        """
-        parse time and convert to 12 hours
-        """
-        date_time = drawer_data['date_time']
-        t = date_time.split('T')[1]
-        time_24hour = t.split(':')[0] + ':' + t.split(':')[1]
-        t = time.strptime(time_24hour, "%H:%M")
-        time_12hour = time.strftime("%I:%M %p", t)
-        return time_12hour
-
-    def create_window(self):
-        """
-        creates a simple visual display
-        """
-        status_window = App(title='Inventory Status', height=200, width=300, layout='grid')
-        Text(status_window, 'Date:', size="24", grid=[0, 0])
-        Text(status_window, self.get_date(inventory_data), size="24", grid=[1, 0])
-        Text(status_window, 'Drawer:', size="24", grid=[0, 2])
-        Text(status_window, str(self.get_drawer_num(inventory_data)), size="24", grid=[1, 2])
-        Text(status_window, 'Item type:', size="24", grid=[0, 3])
-        Text(status_window, self.get_item_type(inventory_data), size="24", grid=[1, 3])
-        Text(status_window, 'Quantity:', size="24", grid=[0, 4])
-        self.item_quantity = Text(status_window, "xx", size="24", grid=[1, 4])
-        self.item_quantity.after(1000, self.update_quantity)
-        status_window.display()
+    def set_values(self):
+        data = self.get_data()
+        for row_num in range(len(data['drawers'])):
+            self.num_rows += 1
+            for col_num in range(self.num_cols):
+                lbl = Label(self.inventory_window, text=data['drawers'][row_num][self.keys[col_num]], fg="#DDDDDD",
+                            font=("Helvetica", 24), width=10, anchor="w")
+                lbl.grid(row=row_num+1, column=col_num, sticky=W)
+                lbl.configure(background="#222222")
+                col_num += 1
+        self.inventory_window.after(1000, inventory_status.set_values)
 
 
 if __name__ == '__main__':
-    inventory = InventoryStatus()
-    inventory_data = inventory.get_drawer_data()
-    inventory.create_window()
+    inventory_status = InventoryStatus()
+    inventory_status.run_display()
+

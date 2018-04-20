@@ -1,1 +1,1 @@
-{"item_type": "bag_of_pintos", "quantity": 3, "drawer_number": "1", "date_time": "2018-04-19T20:10:00"}
+{"drawers": [{"drawer_num": 1, "item_type": "screws", "quantity": 35}, {"drawer_num": 2, "item_type": "nuts", "quantity": 10}, {"drawer_num": 3, "item_type": "bolts", "quantity": 4}]}

@@ -8,11 +8,12 @@ from Configs import env_vars
 class GetJson(Resource):
     def __init__(self):
         self.logger = logging.getLogger(__name__)
+        self.data_file = 'drawer_status.json'
 
     def get(self):
         print("Get request made:")
         print("Retrieving local sensor data:")
-        path = env_vars.scale_dirpath + 'drawer_status.json'
+        path = env_vars.scale_dirpath + self.data_file
         with open(path) as json_data:
             drawer = json.load(json_data)
             json_data.close()

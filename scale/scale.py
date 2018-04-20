@@ -13,7 +13,7 @@ def get_drawer_database():
     drawer data in JSON format
     contains: drawer number, weight per item in kg, item type
     """
-    with open(scale_dir_env_path + 'drawer_database.json') as json_data:
+    with open(scale_dir_env_path + 'drawer_status.json') as json_data:
         drawer_database = json.load(json_data)
         json_data.close()
         return drawer_database
