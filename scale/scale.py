@@ -82,7 +82,9 @@ class Scale:
         input()
         offsets_measured = []
         for i in range(10):
-            offsets_measured.append(self.get_weight())
+            temp = self.get_weight()
+            print(temp)
+            offsets_measured.append(temp)
         o = numpy.mean(offsets_measured)
         self.hx.set_offset(o)
 
@@ -91,7 +93,9 @@ class Scale:
         weight_actual = input()
         weights_measured = []
         for i in range(10):
-            weights_measured.append(hx.get_weight())
+            temp = self.get_weight()
+            print(temp)
+            weights_measured.append(temp)
         w = numpy.mean(weights_measured)
         ratio = (w - self.hx.get_offset()) / weight_actual
         self.hx.set_scale(ratio)
