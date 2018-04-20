@@ -98,6 +98,7 @@ class Scale:
             weights_measured.append(temp)
         w = sum(weights_measured) / float(len(weights_measured))
         ratio = (float(w) - float(self.hx.get_offset())) / float(weight_actual)
+        print ('readings: ' + str(w) + ' offset: ' + str(self.hx.get_offset()) + ' ratio: ' + str(ratio))
         self.hx.set_scale(ratio)
         print('ratio is: ' + str(ratio))
 
