@@ -1,7 +1,9 @@
 import datetime
 import json
+
 from hx711 import HX711
-import env_vars
+
+from Settings import env_vars
 
 
 class Scale:

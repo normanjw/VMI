@@ -1,9 +1,11 @@
 import json
 import logging
 import time
+
 import requests
 from guizero import *
-import env_vars
+
+from Settings import env_vars
 
 
 class InventoryStatus:

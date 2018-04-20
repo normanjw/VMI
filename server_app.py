@@ -1,13 +1,14 @@
 import logging
+
 import flask
 import flask_cors
 import flask_restful
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado.wsgi import WSGIContainer
-from server.get_json import GetJson
-import env_vars
 
+from Settings import env_vars
+from server.get_json import GetJson
 
 app = flask.Flask(__name__)
 api = flask_restful.Api(app)

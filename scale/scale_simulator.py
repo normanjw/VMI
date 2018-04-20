@@ -2,7 +2,7 @@ import random
 import datetime
 import json
 import time
-import env_vars
+from Settings import env_vars
 import logging
 
 

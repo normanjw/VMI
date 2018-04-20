@@ -1,5 +1,6 @@
 import requests
-import env_vars
+
+from Settings import env_vars
 
 
 def client_test():
