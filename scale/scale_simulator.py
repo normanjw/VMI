@@ -4,10 +4,7 @@ import json
 import time
 import logging
 import sys
-import os
-if os.getcwd() == '/':
-    print(sys.path)
-    sys.path.append('/home/pi/Desktop/VMI/')
+sys.path.append('/home/pi/Desktop/VMI/Settings/')
 from Settings import env_vars
 
 
