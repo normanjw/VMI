@@ -66,7 +66,7 @@ class HX711:
         GPIO.output(self.PD_SCK, True)
         count = count ^ 0x800000
         GPIO.output(self.PD_SCK, False)
-
+        print(count)    # debug
         return count
 
     def read_average(self, times=16):
