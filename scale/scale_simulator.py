@@ -3,15 +3,12 @@ import datetime
 import json
 import time
 import logging
-#import sys
-#sys.path.append('/home/pi/Desktop/VMI/scale/')
-#from Settings import env_vars
+from Configs import env_vars
 
 
 class ScaleSimulator:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
-        self.scale_dirpath = '/home/pi/Desktop/VMI/scale/'
 
     def get_drawer_database(self):
         """
@@ -20,7 +17,7 @@ class ScaleSimulator:
         drawer data in JSON format
         contains: drawer number, weight per item in kg, item type
         """
-        with open(self.scale_dirpath + 'drawer_database.json') as json_data:
+        with open(env_vars.scale_dirpath + 'drawer_database.json') as json_data:
             drawer_database = json.load(json_data)
             json_data.close()
             return drawer_database
@@ -66,7 +63,7 @@ class ScaleSimulator:
         return drawer_status
 
     def write_to_file(self, drawer_status):
-        with open(self.scale_dirpath + 'drawer_status.json', 'w') as outfile:
+        with open(env_vars.scale_dirpath + 'drawer_status.json', 'w') as outfile:
             json.dump(drawer_status, outfile)
             print(drawer_status)
 

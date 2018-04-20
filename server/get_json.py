@@ -1,10 +1,8 @@
 import json
 import logging
-
 from flask.json import jsonify
 from flask_restful import Resource
-
-from Settings import env_vars
+from Configs import env_vars
 
 
 class GetJson(Resource):
