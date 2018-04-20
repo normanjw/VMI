@@ -6,6 +6,7 @@ import logging
 import sys
 import os
 if os.getcwd() == '/':
+    print(sys.path)
     sys.path.append('/home/pi/Desktop/VMI/')
 from Settings import env_vars
 
