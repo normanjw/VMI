@@ -82,7 +82,7 @@ class Scale:
         input()
         offsets_measured = []
         for i in range(10):
-            offsets_measured.append(self.hx.get_weight())
+            offsets_measured.append(self.get_weight())
         o = numpy.mean(offsets_measured)
         self.hx.set_offset(o)
 
