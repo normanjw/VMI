@@ -77,7 +77,7 @@ def get_weight():
 if __name__ == "__main__":
     hx = HX711(5, 6)
     hx.set_offset(8334388.297)
-    hx.set_scale(-13.65105314)
+    hx.set_scale(-14)
 
     while True:
         try:
