@@ -98,7 +98,7 @@ class Scale:
 
     def calibrate(self):
         self.calculate_offset()
-        self.calculate_ratio()
+        self.calculate_ratio(self.hx)
 
 
 if __name__ == "__main__":
