@@ -70,14 +70,15 @@ def get_weight():
     weight in kg
     """
     weight = hx.read_weight_kg()
+    print(weight)
     hx.cycle()
     return weight
 
 
 if __name__ == "__main__":
     hx = HX711(5, 6)
-    hx.set_offset(8441810.431)
-    hx.set_scale(12.02637183)
+    hx.set_offset(8334079)
+    hx.set_scale(-12.430837)
 
     while True:
         try:
