@@ -60,7 +60,7 @@ def write_to_file(drawer_status):
     """
     with open(scale_dir_env_path + 'drawer_status.json', 'w') as outfile:
         json.dump(drawer_status, outfile)
-        print(drawer_status)
+#        print(drawer_status)
 
 
 def get_weight():
