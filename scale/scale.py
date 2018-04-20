@@ -100,7 +100,6 @@ class Scale:
         ratio = (float(w) - float(self.hx.get_offset())) / float(weight_actual)
         print('readings: ' + str(w) + ' offset: ' + str(self.hx.get_offset()) + ' ratio: ' + str(ratio))
         self.hx.set_scale(ratio)
-        print('ratio is: ' + str(ratio))
 
     def calibrate(self):
         self.calculate_offset()
@@ -112,6 +111,9 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         if sys.argv[1] == 'c':
             scale.calibrate()
+    else:
+        scale.hx.set_offset(8378851.675)
+        scale.hx.set_scale(13.141740088106957)
 
     while True:
         try:
