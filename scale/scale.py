@@ -65,7 +65,7 @@ class Scale:
         """
         with open(self.scale_dirpath + 'drawer_status.json', 'w') as outfile:
             json.dump(drawer_status, outfile)
-            print(drawer_status)
+            #print(drawer_status)
 
     def get_weight(self):
         """
