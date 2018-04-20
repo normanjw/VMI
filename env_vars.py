@@ -1,9 +1,11 @@
+import os
+
 port_num = 3003
 
 # if running server on pi
 # host = '192.168.43.87'
-# scale_dirpath = '/home/pi/Desktop/VMI/scale/'
+# base_path = '/home/pi/Desktop/VMI_simulator/'
 
 # if running server on localhost
 host = 'localhost'
-scale_dirpath = '/Users/jaz/Desktop/VMI/scale/'
+base_path = os.path.dirname(__file__) + '/'

@@ -1,9 +1,9 @@
-from tkinter import *
+import json
 import logging
 import random
-import json
+from tkinter import *
 import requests
-from Configs import env_vars
+import env_vars
 
 
 class InventoryStatus:
