@@ -82,7 +82,7 @@ class Scale:
         input()
         offsets_measured = []
         for i in range(10):
-            temp = self.get_weight()
+            temp = self.hx.read_average()
             print(temp)
             offsets_measured.append(temp)
         o = numpy.mean(offsets_measured)
@@ -93,7 +93,7 @@ class Scale:
         weight_actual = input()
         weights_measured = []
         for i in range(10):
-            temp = self.get_weight()
+            temp = self.hx.read_average()
             print(temp)
             weights_measured.append(temp)
         w = numpy.mean(weights_measured)
