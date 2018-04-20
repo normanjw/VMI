@@ -33,7 +33,7 @@ class Scale:
         """
         weight = self.get_weight()
         kg_per_item = float(drawer_database['kg_per_item'])
-        print('weight: ' + str(weight)) # debug
+        print('weight in kg: ' + str(weight)) # debug
         return int(weight / kg_per_item)
 
     def get_datetime(self):
