@@ -2,7 +2,6 @@ import datetime
 import json
 import logging
 from hx711 import HX711
-import numpy
 #import sys
 #sys.path.append('/home/pi/Desktop/VMI/scale/')
 #from Settings import env_vars
@@ -85,10 +84,10 @@ class Scale:
             temp = self.hx.read_average()
             print(temp)
             offsets_measured.append(temp)
-        o = numpy.mean(offsets_measured)
+        o = sum(offsets_measured) / float(len(offsets_measured))
         self.hx.set_offset(o)
 
-    def calculate_ratio(self, hx):
+    def calculate_ratio(self):
         print("place then enter weight in grams: ")
         weight_actual = input()
         weights_measured = []
@@ -96,13 +95,13 @@ class Scale:
             temp = self.hx.read_average()
             print(temp)
             weights_measured.append(temp)
-        w = numpy.mean(weights_measured)
+        w = sum(weights_measured) / float(len(weights_measured))
         ratio = (float(w) - float(self.hx.get_offset())) / float(weight_actual)
         self.hx.set_scale(ratio)
 
     def calibrate(self):
         self.calculate_offset()
-        self.calculate_ratio(self.hx)
+        self.calculate_ratio()
 
 
 if __name__ == "__main__":
