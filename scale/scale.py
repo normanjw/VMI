@@ -97,7 +97,7 @@ class Scale:
             print(temp)
             weights_measured.append(temp)
         w = numpy.mean(weights_measured)
-        ratio = (w - self.hx.get_offset()) / weight_actual
+        ratio = (float(w) - float(self.hx.get_offset())) / float(weight_actual)
         self.hx.set_scale(ratio)
 
     def calibrate(self):
