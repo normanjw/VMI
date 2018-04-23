@@ -2,7 +2,6 @@ import datetime
 import json
 from hx711 import HX711
 import math
-#import env_vars
 base_path = '/home/pi/Desktop/VMI/'
 
 

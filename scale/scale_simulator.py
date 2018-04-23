@@ -1,7 +1,7 @@
 import json
 import random
 import time
-import env_vars
+base_path = '/home/pi/Desktop/VMI/'
 
 
 def get_num_drawers():
@@ -10,7 +10,7 @@ def get_num_drawers():
 
 
 def get_data():
-    with open(env_vars.base_path + '/scale/drawer_status.json') as json_data:
+    with open(base_path + '/scale/drawer_status.json') as json_data:
         data = json.load(json_data)
         json_data.close()
         return data
@@ -29,7 +29,7 @@ def refresh_drawer_status():
 
 
 def write_to_file(drawer_status):
-    with open(env_vars.base_path + '/scale/drawer_status.json', 'w') as outfile:
+    with open(base_path + '/scale/drawer_status.json', 'w') as outfile:
         json.dump(drawer_status, outfile)
 
 
