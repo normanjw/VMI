@@ -13,7 +13,7 @@ class HX711:
         """
         self.GAIN = 0
         self.OFFSET = 0
-        self.SCALE = 1
+        self.RATIO = 1
 
         try:
             if gain is 128:
@@ -93,7 +93,7 @@ class HX711:
         """
         grams_per_kg = 1000
         weight_kg = 0
-        weight_grams = (self.read_average() - self.OFFSET) / self.SCALE
+        weight_grams = self.RATIO * self.read_average() + self.OFFSET
         if weight_grams > 0:
             weight_kg = weight_grams / grams_per_kg
         return round(weight_kg, 3)
@@ -115,9 +115,9 @@ class HX711:
         """
         self.OFFSET = offset
 
-    def set_scale(self, scale):
+    def set_ratio(self, scale):
         """
         Set scale
         :param scale, scale
         """
-        self.SCALE = scale
+        self.RATIO = scale

@@ -64,8 +64,6 @@ def write_to_file(drawer_status):
     """
     with open(base_path + 'scale/' + 'drawer_status.json', 'w') as outfile:
         json.dump(drawer_status, outfile)
-        print(drawer_status)
-
 
 def get_weight():
     """
@@ -81,7 +79,7 @@ def get_weight():
 if __name__ == "__main__":
     hx = HX711(5, 6)
     hx.set_offset(8350656.278)
-    hx.set_scale(-13.09644976)
+    hx.set_ratio(-1.001315987)
 
     while True:
         try:
