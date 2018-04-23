@@ -190,7 +190,7 @@ class InventoryStatus:
         for i in range(self.num_drawers):
             self.main_window_canvas.itemconfigure(self.qty_text[i], text=quantities[i])
             self.check_threshold()
-            self.root.after(5000, self.update_quantities)
+            self.root.after(1000, self.update_quantities)
 
     def is_yellow(self, text_obj):
         """
@@ -213,7 +213,7 @@ class InventoryStatus:
         :return: None
         """
         for i in range(len(self.qty_text)):
-            if int(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) < self.threshold\
+            if int(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) <= self.threshold\
                     and not (self.is_yellow(self.qty_text[i])):
                 self.set_text_red(self.qty_text[i])
                 self.activate_button(i, self.qty_text[i])
