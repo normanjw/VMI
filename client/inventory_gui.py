@@ -4,6 +4,7 @@ from tkinter import *
 import requests
 import env_vars
 import math
+import sys
 
 
 class InventoryStatus:
@@ -402,6 +403,9 @@ class InventoryStatus:
 
 
 if __name__ == '__main__':
-    inventory_status = InventoryStatus()
-    inventory_status.refresh_window()
-    mainloop()
+    try:
+        inventory_status = InventoryStatus()
+        inventory_status.refresh_window()
+        mainloop()
+    except KeyboardInterrupt:
+        sys.exit()
