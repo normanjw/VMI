@@ -46,10 +46,11 @@ def refresh_drawer_status():
     drawer_database = get_drawer_database()
     print(drawer_database)
     drawer_status = {
-        "item_type": drawer_database['item_type'],
-        "quantity": get_num_items(drawer_database),
-        "drawer_number": drawer_database['drawer_number'],
-        "date_time": get_datetime()
+        "drawers": [{
+            "drawer_num": drawer_database['drawer_number'],
+            "item_type": drawer_database['item_type'],
+            "quantity": get_num_items(drawer_database)
+        }]
     }
     return drawer_status
 

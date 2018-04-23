@@ -103,6 +103,7 @@ class InventoryStatus:
         :return: number of drawers
         """
         database = self.get_data()
+        print(database)
         return len(database['drawers'])
 
     def create_main_window_boxes(self):
