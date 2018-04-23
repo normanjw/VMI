@@ -4,7 +4,6 @@ from tkinter import *
 import requests
 import env_vars
 import math
-import sys
 
 
 class InventoryStatus:
@@ -25,7 +24,7 @@ class InventoryStatus:
         self.green = '#4fab5b'
         self.red = '#df2b4f'
         self.yellow = '#fff68f'
-        self.threshold = 20
+        self.threshold = 0
         self.background_color = "#222222"
         self.message_color = '#999999'
         self.message_font = 'Informa Pro'
@@ -403,9 +402,6 @@ class InventoryStatus:
 
 
 if __name__ == '__main__':
-    try:
-        inventory_status = InventoryStatus()
-        inventory_status.refresh_window()
-        mainloop()
-    except KeyboardInterrupt:
-        sys.exit()
+    inventory_status = InventoryStatus()
+    inventory_status.refresh_window()
+    mainloop()
