@@ -217,8 +217,7 @@ class InventoryStatus:
                     and not (self.is_yellow(self.qty_text[i])):
                 self.set_text_red(self.qty_text[i])
                 self.activate_button(i, self.qty_text[i])
-            elif self.is_yellow(self.qty_text[i]) and int(self.get_text_from_object(self.main_window_canvas,
-                                                                                    self.qty_text[i])) > self.threshold:
+            elif int(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) > self.threshold:
                 self.set_text_green(self.qty_text[i])
 
     def set_text_green(self, text_obj):
