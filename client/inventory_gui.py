@@ -190,7 +190,7 @@ class InventoryStatus:
         for i in range(self.num_drawers):
             self.main_window_canvas.itemconfigure(self.qty_text[i], text=quantities[i])
             self.check_threshold()
-            self.root.after(40000, self.update_quantities)
+            self.root.after(5000, self.update_quantities)
 
     def is_yellow(self, text_obj):
         """
