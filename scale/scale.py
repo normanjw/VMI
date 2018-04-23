@@ -44,6 +44,7 @@ def refresh_drawer_status():
     :return: dynamic drawer status
     """
     drawer_database = get_drawer_database()
+    print(drawer_database)
     drawer_status = {
         "item_type": drawer_database['item_type'],
         "quantity": get_num_items(drawer_database),
