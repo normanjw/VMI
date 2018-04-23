@@ -94,7 +94,6 @@ class HX711:
         grams_per_kg = 1000
         weight_kg = 0
         weight_grams = (self.read_average() - self.OFFSET) / self.SCALE
-        print(weight_grams)
         if weight_grams > 0:
             weight_kg = weight_grams / grams_per_kg
         return round(weight_kg, 3)
