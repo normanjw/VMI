@@ -251,8 +251,8 @@ class InventoryStatus:
         :param text_obj: ID for canvas text object
         :return: None
         """
-        self.main_window_canvas.tag_bind(text_obj, '<ButtonRelease-1>',
-                                         lambda x: [self.open_quantity_confirmation(drawer_num, text_obj)])
+        self.main_window_canvas.tag_bind(text_obj, '<ButtonRelease-1>', lambda x: [self.open_quantity_confirmation(
+            drawer_num, text_obj)])
 
     def deactivate_button(self, text_obj):
         """
@@ -262,7 +262,7 @@ class InventoryStatus:
         """
         self.main_window_canvas.tag_unbind(text_obj, '<ButtonRelease-1>')
 
-    def get_text_from_object(canvas, text_obj):
+    def get_text_from_object(self, canvas, text_obj):
         """
         gets the text object from the main window canvas
         :param text_obj: quantity
