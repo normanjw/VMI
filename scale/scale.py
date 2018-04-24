@@ -26,8 +26,7 @@ def get_num_items(drawer_database):
     """
     weight = get_weight()
     kg_per_item = float(drawer_database['kg_per_item'])
-    num_items = math.ceil(weight/kg_per_item)
-    print(str(num_items) + 'items = ' + str(weight) + ' grams /' + str(kg_per_item))
+    num_items = math.floor(weight/kg_per_item)
     return num_items
 
 
@@ -45,7 +44,6 @@ def refresh_drawer_status():
     :return: dynamic drawer status
     """
     drawer_database = get_drawer_database()
-    print(drawer_database)
     drawer_status = {
         "drawers": [{
             "drawer_num": drawer_database['drawer_number'],
@@ -78,8 +76,8 @@ def get_weight():
 
 if __name__ == "__main__":
     hx = HX711(5, 6)
-    hx.set_offset(8350656.278)
-    hx.set_ratio(-1.001315987)
+    hx.set_offset(8348927)
+    hx.set_ratio(-1.001335398)
 
     while True:
         try:
