@@ -213,11 +213,11 @@ class InventoryStatus:
         :return: None
         """
         for i in range(len(self.qty_text)):
-            if float(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) <= self.threshold\
+            if int(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) <= self.threshold\
                     and not (self.is_yellow(self.qty_text[i])):
                 self.set_text_red(self.qty_text[i])
                 self.activate_button(i, self.qty_text[i])
-            elif float(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) > self.threshold:
+            elif int(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) > self.threshold:
                 self.set_text_green(self.qty_text[i])
 
     def set_text_green(self, text_obj):
