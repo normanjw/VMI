@@ -32,9 +32,7 @@ def read_offset():
 
 
 def read_calibration_weight():
-    weight = input('place weight on scale, type in weight and hit enter: ')
-    while not isinstance(weight, float):
-        weight = input('place weight on scale in grams, type in weight and hit enter: ')
+    weight = input('place weight on scale (grams), type in weight and hit enter: ')
     return weight
 
 
