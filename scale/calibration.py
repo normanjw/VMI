@@ -33,7 +33,7 @@ def read_offset():
 
 def read_calibration_weight():
     weight = input('place weight on scale (grams), type in weight and hit enter: ')
-    return float(weight)
+    return weight
 
 
 def read_sensor_output():
