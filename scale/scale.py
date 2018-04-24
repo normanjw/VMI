@@ -33,10 +33,7 @@ def get_num_items(drawer_database):
         num_items = math.floor(num_items_as_float)
     else:
         num_items = math.ceil(num_items_as_float)
-    print('float val: ' + str(num_items_as_float))
-    print('difference: ' + str(difference))
-    print('num items: ' + str(num_items))
-    return num_items
+    return num_items_as_float
 
 
 def get_datetime():
