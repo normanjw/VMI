@@ -106,7 +106,7 @@ class HX711:
         self.power_down()
         time.sleep(0.001)
         self.power_up()
-        time.sleep(0.001)
+        time.sleep(3)
 
     def set_offset(self, offset):
         """
