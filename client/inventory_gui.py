@@ -47,9 +47,9 @@ class InventoryStatus:
         mode_arr = stats.mode(self.item_quantity_history)
         mode = mode_arr[0]
         if len(self.item_quantity_history) >= 5 and num_items != mode:
-            return mode
+            return int(mode)
         else:
-            return num_items
+            return int(num_items)
 
     def set_main_window_width(self):
         """
@@ -87,10 +87,10 @@ class InventoryStatus:
         host = str(env_vars.host)
         port_num = str(env_vars.port_num)
         url = 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data'
-        print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
+        # print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
         response = requests.get(url)
-        print("Status Code:" + str(response.status_code))
-        print(f'Content from ' + host + ':' + port_num + ':' + '{response.content}')
+        # print("Status Code:" + str(response.status_code))
+        # print(f'Content from ' + host + ':' + port_num + ':' + '{response.content}')
         drawer_data = json.loads(response.content)
         return drawer_data
 
@@ -129,7 +129,7 @@ class InventoryStatus:
             qty = data['drawers'][i]['quantity']
             # self.add_to_item_history(qty)
             # corrected_qty = self.scale_filter(qty)
-            # print(corrected_qty)
+            # print(str(corrected_qty) + ' / ' + str(qty))
             quantities.append(qty)
         return quantities
 
