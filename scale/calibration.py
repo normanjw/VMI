@@ -47,6 +47,7 @@ def read_sensor_output():
             sensor_readings.append(sensor_reading)
     return numpy.mean(sensor_readings)
 
+
 def calibrate():
     try:
         offset = read_offset()
