@@ -6,7 +6,9 @@ import numpy
 
 
 hx = HX711(5, 6)
-
+num_to_avg = 15
+ratio = 0
+offset = 0
 
 def cleanAndExit():
     GPIO.cleanup()
@@ -23,7 +25,7 @@ def cycle():
 def read_offset():
     offset_readings = []
     input('when no weight on scale hit enter: ')
-    for i in range(10):
+    for i in range(num_to_avg):
         offset_read = hx.read_average()
         if i > 0:
             print(offset_read)
@@ -39,13 +41,12 @@ def read_calibration_weight():
 
 def read_sensor_output():
     sensor_readings = []
-    for i in range(10):
+    for i in range(num_to_avg):
         sensor_reading = hx.read_average()
         if i > 0:
             print(sensor_reading)
             sensor_readings.append(sensor_reading)
     return numpy.mean(sensor_readings)
-
 
 def calibrate():
     try:
@@ -53,10 +54,19 @@ def calibrate():
         calibration_weight = read_calibration_weight()
         sensor_output = read_sensor_output()
         ratio = (calibration_weight - offset) / sensor_output
-        print('ratio= ' + str(ratio) + ', offset= ' + str(offset))
     except SystemExit:
         cleanAndExit()
 
 
+def get_ratio():
+    return ratio
+
+
+def get_offset():
+    return offset
+
+
 if __name__ == "__main__":
     calibrate()
+    print('ratio: ' + str(get_ratio()))
+    print('offset ' + str(get_offset()))
