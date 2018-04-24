@@ -104,7 +104,7 @@ class HX711:
 
     def cycle(self):
         self.power_down()
-        time.sleep(0.0001)
+        time.sleep(0.001)
         self.power_up()
         time.sleep(2)
 
