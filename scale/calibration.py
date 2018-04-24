@@ -25,23 +25,25 @@ def read_offset():
     input('when no weight on scale hit enter: ')
     for i in range(10):
         offset_read = hx.read_average()
-        print(offset_read)
-        offset_readings.append(offset_read)
+        if i > 0:
+            print(offset_read)
+            offset_readings.append(offset_read)
         cycle()
     return numpy.mean(offset_readings)
 
 
 def read_calibration_weight():
     weight = input('place weight on scale (grams), type in weight and hit enter: ')
-    return (weight)
+    return float(weight)
 
 
 def read_sensor_output():
     sensor_readings = []
     for i in range(10):
         sensor_reading = hx.read_average()
-        print(sensor_reading)
-        sensor_readings.append(sensor_reading)
+        if i > 0:
+            print(sensor_reading)
+            sensor_readings.append(sensor_reading)
     return numpy.mean(sensor_readings)
 
 
