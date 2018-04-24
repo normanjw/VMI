@@ -26,14 +26,16 @@ def get_num_items(drawer_database):
     """
     weight = get_weight()
     kg_per_item = float(drawer_database['kg_per_item'])
-    difference = math.ceil(weight/kg_per_item) - float(weight/kg_per_item)
+    num_items_as_float = weight/float(kg_per_item)
+    difference = math.ceil(num_items_as_float) - num_items_as_float
     num_items = 0
     if difference < 0.5:
-        num_items = math.floor(weight/kg_per_item)
+        num_items = math.floor(num_items_as_float)
     else:
-        num_items = math.ceil(weight/kg_per_item)
-    print('difference: ' + difference)
-    print('num items: ' + num_items)
+        num_items = math.ceil(num_items_as_float)
+    print('float val: ' + str(num_items_as_float))
+    print('difference: ' + str(difference))
+    print('num items: ' + str(num_items))
     return num_items
 
 
