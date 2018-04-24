@@ -30,10 +30,10 @@ def get_num_items(drawer_database):
     difference = math.ceil(num_items_as_float) - num_items_as_float
     num_items = 0
     if difference < 0.5:
-        num_items = math.floor(num_items_as_float)
-    else:
         num_items = math.ceil(num_items_as_float)
-    return num_items_as_float
+    else:
+        num_items = math.floor(num_items_as_float)
+    return num_items
 
 
 def get_datetime():

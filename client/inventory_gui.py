@@ -35,25 +35,6 @@ class InventoryStatus:
         self.outline_width = 1
         self.popup_window_size = '320x240'
 
-    def get_drawer_data(self):
-        """
-        makes get request for drawer status
-        :return: json of drawer data
-        """
-        host = str(env_vars.host)
-        port_num = str(env_vars.port_num)
-        url = 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data'
-        print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
-        response = requests.get(url)
-        print("Status Code:" + str(response.status_code))
-        print(f'Content from ' + host + ':' + port_num + ':' + '{response.content}')
-        drawer_data = json.loads(response.content)
-        return drawer_data
-
-    def get_num_items(self):
-        drawer_data = self.get_drawer_data()
-        return drawer_data['quantity']
-
     def set_main_window_width(self):
         """
         calculate main window width based on number of drawers in first row
@@ -90,10 +71,10 @@ class InventoryStatus:
         host = str(env_vars.host)
         port_num = str(env_vars.port_num)
         url = 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data'
-        print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
+        # print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
         response = requests.get(url)
-        print("Status Code:" + str(response.status_code))
-        print(f'Content from ' + host + ':' + port_num + ':' + '{response.content}')
+        # print("Status Code:" + str(response.status_code))
+        # print(f'Content from ' + host + ':' + port_num + ':' + '{response.content}')
         drawer_data = json.loads(response.content)
         return drawer_data
 
@@ -103,7 +84,6 @@ class InventoryStatus:
         :return: number of drawers
         """
         database = self.get_data()
-        print(database)
         return len(database['drawers'])
 
     def create_main_window_boxes(self):
@@ -213,11 +193,11 @@ class InventoryStatus:
         :return: None
         """
         for i in range(len(self.qty_text)):
-            if float(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) <= self.threshold\
+            if int(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) <= self.threshold\
                     and not (self.is_yellow(self.qty_text[i])):
                 self.set_text_red(self.qty_text[i])
                 self.activate_button(i, self.qty_text[i])
-            elif float(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) > self.threshold:
+            elif int(self.get_text_from_object(self.main_window_canvas, self.qty_text[i])) > self.threshold:
                 self.set_text_green(self.qty_text[i])
 
     def set_text_green(self, text_obj):
