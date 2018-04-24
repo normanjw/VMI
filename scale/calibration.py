@@ -53,7 +53,7 @@ def calibrate():
         calibration_weight = read_calibration_weight()
         sensor_output = read_sensor_output()
         ratio = (calibration_weight - offset) / sensor_output
-        print('ratio= ' + ratio + ', offset= ' + offset)
+        print('ratio= ' + str(ratio) + ', offset= ' + str(offset))
     except SystemExit:
         cleanAndExit()
 
