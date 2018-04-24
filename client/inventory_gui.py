@@ -127,9 +127,9 @@ class InventoryStatus:
         data = self.get_data()
         for i in range(len(data['drawers'])):
             qty = data['drawers'][i]['quantity']
-            self.add_to_item_history(qty)
-            corrected_qty = self.scale_filter(qty)
-            print(corrected_qty)
+            # self.add_to_item_history(qty)
+            # corrected_qty = self.scale_filter(qty)
+            # print(corrected_qty)
             quantities.append(qty)
         return quantities
 
