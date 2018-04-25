@@ -243,6 +243,7 @@ class InventoryStatus:
         :return: None
         """
         self.main_window_canvas.itemconfigure(text_obj, fill=self.yellow)
+        self.main_window_canvas.tag_unbind(text_obj, '<ButtonRelease-1>')
 
     def activate_button(self, drawer_num, text_obj):
         """
