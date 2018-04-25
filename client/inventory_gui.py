@@ -22,9 +22,10 @@ class InventoryStatus:
         self.x_0 = 85
         self.y_0 = 300
         self.qty_text = []
-        self.deep_red = '#680612'
         self.green = '#4fab5b'
+        self.shadow_green = '#417b3e'
         self.red = '#df2b4f'
+        self.shadow_red = '#a23838'
         self.yellow = '#fff68f'
         self.threshold = 0
         self.background_color = "#222222"
@@ -236,7 +237,7 @@ class InventoryStatus:
         :param text_obj: ID for canvas text object
         :return: None
         """
-        self.main_window_canvas.itemconfigure(text_obj, fill=self.red, activefill=self.deep_red)
+        self.main_window_canvas.itemconfigure(text_obj, fill=self.red, activefill=self.shadow_red)
 
     def set_text_yellow(self, text_obj):
         """
@@ -328,7 +329,8 @@ class InventoryStatus:
         :param current_window: window object for current popup window
         :return: None
         """
-        yes_label = canvas.create_text(75, 50, font=(self.icon_font, 50), text='Yes', fill=self.green)
+        yes_label = canvas.create_text(75, 50, font=(self.icon_font, 50), text='Yes', fill=self.green,
+                                       activefill=self.shadow_green)
         canvas.tag_bind(yes_label, '<ButtonRelease-1>',
                         lambda x: [self.set_text_yellow(text_obj), self.exit_window(current_window)])
 
@@ -341,7 +343,8 @@ class InventoryStatus:
         :param is_quantity_window: Boolean to check which type of popup window it is
         :return:
         """
-        no_label = canvas.create_text(204, 50, font=(self.icon_font, 50), text='No', fill=self.red)
+        no_label = canvas.create_text(204, 50, font=(self.icon_font, 50), text='No', fill=self.red,
+                                      activefill=self.shadow_red)
         if is_quantity_window:
             canvas.tag_bind(no_label, '<ButtonRelease-1>', lambda x: [self.exit_window(current_window),
                                                                       self.create_error_confirm_window(text_obj)])
