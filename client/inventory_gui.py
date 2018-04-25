@@ -22,6 +22,7 @@ class InventoryStatus:
         self.x_0 = 85
         self.y_0 = 300
         self.qty_text = []
+        self.deep_red = '#680612'
         self.green = '#4fab5b'
         self.red = '#df2b4f'
         self.yellow = '#fff68f'
@@ -226,24 +227,26 @@ class InventoryStatus:
         :param text_obj: ID for canvas text object
         :return: None
         """
-        self.main_window_canvas.itemconfigure(text_obj, fill=self.green)
+        self.main_window_canvas.itemconfigure(text_obj, fill=self.green, activefill=self.green)
 
     def set_text_red(self, text_obj):
         """
         sets a canvas text object red
+        changes color when user hovers to indicate it is clickable
         :param text_obj: ID for canvas text object
         :return: None
         """
-        self.main_window_canvas.itemconfigure(text_obj, fill=self.red)
+        self.main_window_canvas.itemconfigure(text_obj, fill=self.red, activefill=self.deep_red)
 
     def set_text_yellow(self, text_obj):
         """
         sets a canvas text object yellow
+        resets hover color to be static
         :param text_obj: ID for canvas text object
         :return: None
         """
-        self.main_window_canvas.itemconfigure(text_obj, fill=self.yellow)
-        self.main_window_canvas.tag_unbind(text_obj, '<ButtonRelease-1>')
+        self.main_window_canvas.itemconfigure(text_obj, fill=self.yellow, activefill=self.yellow)
+        self.deactivate_button(text_obj)
 
     def activate_button(self, drawer_num, text_obj):
         """
