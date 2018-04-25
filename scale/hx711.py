@@ -14,6 +14,7 @@ class HX711:
         self.GAIN = 0
         self.OFFSET = 0
         self.RATIO = 1
+        self.TARE = 0
 
         try:
             if gain is 128:
@@ -93,7 +94,7 @@ class HX711:
         """
         grams_per_kg = 1000
         weight_kg = 0
-        weight_grams = self.RATIO * self.read_average() + self.OFFSET
+        weight_grams = self.RATIO * self.read_average() + self.OFFSET - self.TARE
         if weight_grams > 0:
             weight_kg = weight_grams / grams_per_kg
         return round(weight_kg, 3)
@@ -108,16 +109,24 @@ class HX711:
         self.power_up()
         time.sleep(2)
 
+    def set_tare(self, tare):
+        """
+        takes tare as weight in grams
+        :param tare:
+        :return:
+        """
+        self.TARE = tare
+
     def set_offset(self, offset):
         """
         Set the offset
-        :param offset: offset
+        :param offset: raw sensor reading with no weight
         """
         self.OFFSET = offset
 
-    def set_ratio(self, scale):
+    def set_ratio(self, ratio):
         """
-        Set scale
-        :param scale, scale
+        Set scale ratio
+        :param ratio: raw scale reading of known weight
         """
-        self.RATIO = scale
+        self.RATIO = ratio
