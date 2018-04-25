@@ -4,7 +4,6 @@ from tkinter import *
 import requests
 import env_vars
 import math
-from scipy import stats
 
 
 class InventoryStatus:
@@ -37,21 +36,6 @@ class InventoryStatus:
         self.box_fill_color = '#2A2A2A'
         self.outline_width = 1
         self.popup_window_size = '320x240'
-        self.item_quantity_history = []
-
-    def add_to_item_history(self, num_items):
-        if len(self.item_quantity_history) < 10:
-            self.item_quantity_history.append(num_items)
-        else:
-            del self.item_quantity_history[:]
-
-    def scale_filter(self, num_items):
-        mode_arr = stats.mode(self.item_quantity_history)
-        mode = mode_arr[0]
-        if len(self.item_quantity_history) >= 5 and num_items != mode:
-            return int(mode)
-        else:
-            return int(num_items)
 
     def set_main_window_width(self):
         """
@@ -89,10 +73,10 @@ class InventoryStatus:
         host = str(env_vars.host)
         port_num = str(env_vars.port_num)
         url = 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data'
-        # print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
+        print('Retrieving data from: ' + 'http://' + host + ':' + port_num + '/api/v1/VMI/get_sensor_data')
         response = requests.get(url)
-        # print("Status Code:" + str(response.status_code))
-        # print(f'Content from ' + host + ':' + port_num + ':' + '{response.content}')
+        print("Status Code:" + str(response.status_code))
+        print(f'Content from ' + host + ':' + port_num + ':' + '{response.content}')
         drawer_data = json.loads(response.content)
         return drawer_data
 
@@ -129,9 +113,6 @@ class InventoryStatus:
         data = self.get_data()
         for i in range(len(data['drawers'])):
             qty = data['drawers'][i]['quantity']
-            # self.add_to_item_history(qty)
-            # corrected_qty = self.scale_filter(qty)
-            # print(str(corrected_qty) + ' / ' + str(qty))
             quantities.append(qty)
         return quantities
 
