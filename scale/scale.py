@@ -15,7 +15,6 @@ class Scale:
         self.base_path = '/home/pi/Desktop/VMI/'
         self.out_path = self.base_path + 'scale/' + 'drawer_status.json'
         self.drawer_database = self.get_drawer_database()
-        self.tare = 0
 
     def get_drawer_database(self):
         """
@@ -92,8 +91,6 @@ class Scale:
                     grams = usb_binary_read[3]
         except OSError:
             print("{0} - Failed to read from USB device".format(datetime.utcnow()))
-        grams -= self.tare
-        print(grams)
         return grams
 
     def handle_alarm(self, signum, frame):

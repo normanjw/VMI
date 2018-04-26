@@ -111,6 +111,7 @@ class InventoryStatus:
         """
         quantities = []
         data = self.get_data()
+        print(data)
         for i in range(len(data['drawers'])):
             qty = data['drawers'][i]['quantity']
             quantities.append(qty)
@@ -341,7 +342,7 @@ class InventoryStatus:
         :return: None
         """
         item_types = self.get_item_types()
-        message = 'Does Drawer ' + str(drawer_num) + ' contain '\
+        message = 'Does Drawer ' + str(drawer_num + 1) + ' contain '\
                   + self.get_text_from_object(self.main_window_canvas, text_obj) + ' ' + item_types[drawer_num] + '?'
         lbl = Label(window, text=message, bg=self.background_color, fg=self.message_color, font=(self.message_font, 20))
         lbl.pack(pady=30)
