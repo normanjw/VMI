@@ -37,6 +37,7 @@ class InventoryStatus:
         self.box_fill_color = '#2A2A2A'
         self.outline_width = 1
         self.popup_window_size = '320x240'
+        self.num_active_drawers = 1
 
     def set_main_window_width(self):
         """
@@ -173,7 +174,7 @@ class InventoryStatus:
         :return: None
         """
         quantities = self.get_quantities()
-        for i in range(1):
+        for i in range(self.num_active_drawers):
             self.main_window_canvas.itemconfigure(self.qty_text[i], text=quantities[i])
             self.check_threshold()
             self.root.after(1000, self.update_quantities)
