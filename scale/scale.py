@@ -48,13 +48,13 @@ class Scale:
         """
         :return: dynamic drawer status
         """
-        inventory_status = {
-            "drawers": [{
-                "drawer_num": self.drawer_database['drawer_number'],
-                "item_type": self.drawer_database['item_type'],
-                "quantity": self.get_num_items()
-            }]
-        }
+        inventory_status = {"drawers": [
+            {"drawer_num": self.drawer_database['drawer_number'], "item_type": self.drawer_database['item_type'],
+             "quantity": self.get_num_items()},
+            {"drawer_num": 2, "item_type": "Hex Nuts", "quantity": 19},
+            {"drawer_num": 3, "item_type": "Hex Screws", "quantity": 15}
+        ]}
+
         return inventory_status
 
     def write_JSON_to_file(self, output):
