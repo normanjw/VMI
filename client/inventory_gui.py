@@ -12,7 +12,8 @@ class InventoryStatus:
         self.drawers_per_row = 4
         self.root = Tk()
         self.keys = ['drawer_num', 'item_type', 'quantity']
-        self.num_drawers = self.get_num_drawers()
+        self.num_drawers = 0
+        self.set_num_drawers()
         self.num_rows = self.set_num_rows()
         self.main_width = self.set_main_window_width()
         self.main_height = self.set_main_window_height()
@@ -80,13 +81,14 @@ class InventoryStatus:
         drawer_data = json.loads(response.content)
         return drawer_data
 
-    def get_num_drawers(self):
+    def set_num_drawers(self):
         """
         gets the number of drawers
         :return: number of drawers
         """
         database = self.get_data()
-        return len(database['drawers'])
+        self.num_drawers = len(database['drawers'])
+        print(self.num_drawers)
 
     def create_main_window_boxes(self):
         """
