@@ -173,7 +173,7 @@ class InventoryStatus:
         :return: None
         """
         quantities = self.get_quantities()
-        for i in range(self.num_drawers):
+        for i in range(1):
             self.main_window_canvas.itemconfigure(self.qty_text[i], text=quantities[i])
             self.check_threshold()
             self.root.after(1000, self.update_quantities)
